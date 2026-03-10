@@ -1,4 +1,4 @@
-package tudelft.blackjack;ewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+package tudelft.blackjack;
 
 public class BlackJack {
 
