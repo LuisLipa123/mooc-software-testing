@@ -19,7 +19,7 @@ public class ChocolateBagsTest {
         int result = new ChocolateBags().calculate(small, big, total);
         Assertions.assertEquals(expectedResult, result);
     }
-
+    
     @ParameterizedTest(name = "small={0}, big={1}, total={2}, result={3}")
     @CsvSource({
         "0,3,17,-1", "1,3,17,-1", "2,3,17,2", "3,3,17,2",
@@ -32,6 +32,33 @@ public class ChocolateBagsTest {
     @ParameterizedTest(name = "small={0}, big={1}, total={2}, result={3}")
     @CsvSource({ "4,2,3,3", "3,2,3,3", "2,2,3,-1", "1,2,3,-1" })
     public void onlySmallBars(int small, int big, int total, int expectedResult) {
+        int result = new ChocolateBags().calculate(small, big, total);
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    // NUEVA PARTICION DE BARRAS GRANDES Y PEQUEÑAS
+    @ParameterizedTest(name = "small={0}, big={1}, total={2}, result={3}")
+    @CsvSource({
+        "3,1,8,3",   
+        "4,1,9,4",   
+        "2,2,12,2",  
+        "1,2,11,1",  
+        "1,1,9,-1"  
+    })
+    public void bigAndSmallBarso(int small, int big, int total, int expectedResult) {
+        int result = new ChocolateBags().calculate(small, big, total);
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    // NUEVA PARTICIÓN DE SOLO ABRRAS PEQUEÑAS
+    @ParameterizedTest(name = "small={0}, big={1}, total={2}, result={3}")
+    @CsvSource({
+        "10,10,5,0",   
+        "10,10,7,2",   
+        "10,10,50,0",  
+        "10,10,53,3"   
+    })
+    public void excessBars(int small, int big, int total, int expectedResult) {
         int result = new ChocolateBags().calculate(small, big, total);
         Assertions.assertEquals(expectedResult, result);
     }
