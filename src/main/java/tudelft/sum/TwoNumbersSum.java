@@ -7,22 +7,30 @@ import java.util.Collections;
 class TwoNumbersSum {
 
     public ArrayList<Integer> addTwoNumbers(ArrayList<Integer> first, ArrayList<Integer> second) {
-        Collections.reverse(first);
-        Collections.reverse(second);
+        // Avoid mutating input lists (side effects)
+        ArrayList<Integer> a = new ArrayList<>(first);
+        ArrayList<Integer> b = new ArrayList<>(second);
+
+        Collections.reverse(a);
+        Collections.reverse(b);
 
         int complement = 0;
         ArrayList<Integer> result = new ArrayList<>();
 
-        for(int i = 0; i < Math.max(first.size(), second.size()); i++){
-            int firstVal = i < first.size() ? first.get(i) : 0;
-            int secondVal = i < second.size() ? second.get(i) : 0;
+        for (int i = 0; i < Math.max(a.size(), b.size()); i++) {
+            int firstVal = i < a.size() ? a.get(i) : 0;
+            int secondVal = i < b.size() ? b.get(i) : 0;
+
             int total = firstVal + secondVal + complement;
-            complement = 0;
-            if (total >= 10){
-                complement = 1;
-                total -= 10;
-            }
-            result.add(i, total);
+            complement = total / 10;
+            total = total % 10;
+
+            result.add(total);
+        }
+
+        // If there's still a carry, add it
+        if (complement > 0) {
+            result.add(complement);
         }
 
         Collections.reverse(result);
